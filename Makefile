@@ -1,4 +1,4 @@
-PROJECT_NAME=gonvert
+PROJECT_NAME=gonvert-gtk
 SOURCE_PATH=src
 SOURCE=$(shell find $(SOURCE_PATH) -iname "*.py")
 PROGRAM=$(SOURCE_PATH)/$(PROJECT_NAME).py
@@ -26,7 +26,7 @@ CTAGS=ctags-exuberant
 all: test
 
 run: $(OBJ)
-	$(SOURCE_PATH)/$(PROJECT_NAME)_glade.py
+	$(SOURCE_PATH)/gonvert_glade.py
 
 profile: $(OBJ)
 	$(PROFILE_GEN) $(PROGRAM)
@@ -47,7 +47,7 @@ package: $(OBJ)
 	$(foreach file, $(DATA), cp $(file) $(BUILD_PATH)/generic/$(subst /,-,$(file)) ; )
 	$(foreach file, $(SOURCE), cp $(file) $(BUILD_PATH)/generic/$(subst /,-,$(file)) ; )
 	#$(foreach file, $(OBJ), cp $(file) $(BUILD_PATH)/generic/$(subst /,-,$(file)) ; )
-	cp support/$(PROJECT_NAME).desktop $(BUILD_PATH)/generic
+	cp support/gonvert.desktop $(BUILD_PATH)/generic
 	cp support/builddeb.py $(BUILD_PATH)/generic
 	cp support/py2deb.py $(BUILD_PATH)/generic
 
@@ -95,7 +95,7 @@ $(TODO_FILE): $(SOURCE)
 	@- $(TODO_FINDER) $(SOURCE) > $(TODO_FILE)
 
 %.pyc: %.py
-	$(SYNTAX_TEST) $<
+	#$(SYNTAX_TEST) $<
 
 #Makefile Debugging
 #Target to print any variable, can be added to the dependencies of any other target
